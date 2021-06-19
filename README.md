@@ -4,7 +4,14 @@
 - Hides used shop terminals.
 - Highlights chests and interactables.
 
+For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2Mods/issues)
+
 ## Changelog
+
+**1.1.1**
+
+* Split highlights into more categories and added options for enabling/disabling them. (Chests, Turrets, Drones, Shops, Scrapper, Duplicator)
+* Adaptive chest now also hides after use.
 
 **1.1.0**
 
