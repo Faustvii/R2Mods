@@ -1,0 +1,10 @@
+﻿{
+	"name": "QoLChests",
+	"version_number": "1.1.0",
+	"website_url": "https://github.com/Faustvii/",
+	"description": "Quality of life changes to chests and terminals - Hide when empty and highlighting.",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.9",
+		"RiskofThunder-HookGenPatcher-1.2.1"
+	]
+}
