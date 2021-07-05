@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using Faust.SetItems.Items;
 using Faust.SetItems.SoftDependencies;
 using R2API;
@@ -103,12 +103,17 @@ namespace Faust.SetItems
 
         public void Hooks()
         {
+#if DEBUG
             On.RoR2.Networking.GameNetworkManager.OnClientConnect += (self, user, t) => { }; // Allow us to connect.
+#endif
         }
 
         //The Update() method is run on every frame of the game.
         private void Update()
         {
+#if !DEBUG
+            return;
+#endif
             //This if statement checks if the player has currently pressed F3.
             if (Input.GetKeyDown(KeyCode.F3))
             {
