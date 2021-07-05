@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 884760284
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bf7662ab41dee89a5f001e24fdaa396c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1aa59a82e9f13c206a2a0a58778f34ce
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Models/Prefabs/Items/FireGods/FireGodsWand1.prefab
+- Assets/Textures/Icons/Items/FireGodsWand3Icon.png
+- Assets/Models/Prefabs/Effects/FireMagicCircle.prefab
+- Assets/Textures/Icons/Items/FireGodsWand4Icon.png
+- Assets/Models/Prefabs/Effects/AuraCircle.prefab
+- Assets/Models/Prefabs/Items/FireGods/FireGodsWand3.prefab
+- Assets/Models/Prefabs/Items/FireGods/FireGodsWand4.prefab
+- Assets/Models/Prefabs/Effects/Orb.prefab
+- Assets/Models/Prefabs/Items/FireGods/FireGodsWand2.prefab
+- Assets/Textures/Icons/Items/FireGodsWand1Icon.png
+- Assets/Models/Prefabs/Effects/IceMagicCircle.prefab
+- Assets/Textures/Icons/Items/FireGodsWand2Icon.png
+Dependencies: []

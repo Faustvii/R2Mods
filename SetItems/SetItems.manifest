@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2607355313
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: itemsets_assets
+      Dependencies: {}
