@@ -8,6 +8,11 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 
 ## Changelog
 
+**1.1.2**
+
+* Added option to disable hiding of used interactables.
+* Added option to remove highlighting from used interactables.
+
 **1.1.1**
 
 * Split highlights into more categories and added options for enabling/disabling them. (Chests, Turrets, Drones, Shops, Scrapper, Duplicator)
