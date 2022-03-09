@@ -8,6 +8,15 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 
 ## Changelog
 
+**1.1.4**
+
+* Fixed issue with Executive Card
+* Fixed issue with Shipping Request Form
+
+**1.1.3**
+
+* Updated to new Risk of rain patch
+
 **1.1.2**
 
 * Added option to disable hiding of used interactables.

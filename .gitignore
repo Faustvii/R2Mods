@@ -774,3 +774,7 @@ crashlytics-build.properties
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,unity,csharp,dotnetcore,aspnetcore
 
 Unity/ItemSets/Assets/ImportedAssets/
+
+*.prepatch
+
+SetItems/SetItems.dll
