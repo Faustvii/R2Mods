@@ -5,13 +5,9 @@ VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QoLChests", "QoLChests\QoLChests.csproj", "{2F8A40CC-6D15-486D-B689-0A7A472DB89E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metadata", "Metadata", "{3A26DDA8-2697-4D64-962B-DB9E2DC00EF6}"
-	ProjectSection(SolutionItems) = preProject
-		manifest.json = manifest.json
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SetItems", "SetItems\SetItems.csproj", "{90D4AC70-8041-4D98-A29B-770E8E925876}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QoLBazaar", "QoLBazaar\QoLBazaar.csproj", "{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +23,10 @@ Global
 		{90D4AC70-8041-4D98-A29B-770E8E925876}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90D4AC70-8041-4D98-A29B-770E8E925876}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90D4AC70-8041-4D98-A29B-770E8E925876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
