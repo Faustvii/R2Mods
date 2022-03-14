@@ -1,4 +1,5 @@
 ﻿using Faust.SetItems.Items.FireGod;
+using Faust.SetItems.Utils;
 using ItemStats;
 using ItemStats.Stat;
 using RoR2;
@@ -23,18 +24,33 @@ namespace Faust.SetItems.SoftDependencies
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public static void CreateFireGodsWand1StatDef()
         {
-            var cuthroatChestStafDef = new ItemStatDef
+            AddItemStatDef(FireGodsHaste.Instance.ItemDef, new ItemStatDef
             {
                 Stats = new List<ItemStat>()
                 {
                     new ItemStat
                     (
-                        (itemCount, ctx) => FireGodsWand1.BaseDurationOfBuffInSeconds + (FireGodsWand1.AdditionalDurationOfBuffInSeconds * (itemCount - 1)),
+                        (itemCount, ctx) => FireGodsHaste.BaseAttackSpeedPercentageIncrease.Value + (FireGodsHaste.AdditionalAttackSpeedPercentageIncrease.Value * (itemCount - 1)),
                         (value, ctx) => $"Current Max Buff Duration: {value} second(s)"
                     )
                 }
-            };
-            AddItemStatDef(FireGodsWand1.Instance.ItemDef, cuthroatChestStafDef);
+            });
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static void CreateFireGodsWand4StatDef()
+        {
+            AddItemStatDef(FireGodsBurn.Instance.ItemDef, new ItemStatDef
+            {
+                Stats = new List<ItemStat>()
+                {
+                    new ItemStat
+                    (
+                        (itemCount, ctx) => FireGodsBurn.ActiviationPercentChance.Value + (FireGodsBurn.AdditionalActiviationPercentChance.Value * (itemCount - 1)),
+                        (value, ctx) => $"Current activation chance: {MathHelpers.FloatToPercentageString(value)}"
+                    )
+                }
+            });
         }
     }
 }

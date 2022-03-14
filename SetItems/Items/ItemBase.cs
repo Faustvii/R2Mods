@@ -33,8 +33,8 @@ namespace Faust.SetItems.Items
         public virtual bool Hidden { get; } = false;
         public virtual bool AIBlacklisted { get; set; } = false;
 
-        public virtual GameObject ItemModel { get; } = Resources.Load<GameObject>("Prefabs/PickupModels/PickupMystery");
-        public virtual Sprite ItemIcon { get; } = Resources.Load<Sprite>("Textures/MiscIcons/texMysteryIcon");
+        public virtual GameObject ItemModel { get; } = LegacyResourcesAPI.Load<GameObject>("Prefabs/PickupModels/PickupMystery");
+        public virtual Sprite ItemIcon { get; } = LegacyResourcesAPI.Load<Sprite>("Textures/MiscIcons/texMysteryIcon");
 
         //creates an unlockable requirement
         public virtual UnlockableDef Unlockable { get; }
@@ -80,7 +80,7 @@ namespace Faust.SetItems.Items
 
             ItemDef.name = "ITEM_" + ItemLangTokenName;
             ItemDef.nameToken = "ITEM_" + ItemLangTokenName + "_NAME";
-            ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_NAME";
+            ItemDef.pickupToken = "ITEM_" + ItemLangTokenName + "_PICKUP";
             ItemDef.descriptionToken = "ITEM_" + ItemLangTokenName + "_DESCRIPTION";
             ItemDef.loreToken = "ITEM_" + ItemLangTokenName + "_LORE";
             ItemDef.pickupModelPrefab = ItemModel;
@@ -93,8 +93,9 @@ namespace Faust.SetItems.Items
             if(ItemTags.Length > 0)
                 ItemDef.tags = ItemTags;
 
-            CreateItemDisplayRules();
-            //ItemAPI.Add(new CustomItem(ItemDef, CreateItemDisplayRules()));
+            var rules = CreateItemDisplayRules();
+
+            ItemAPI.Add(new CustomItem(ItemDef, rules));
         }
 
         //where hooks go

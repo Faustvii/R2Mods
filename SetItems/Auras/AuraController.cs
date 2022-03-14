@@ -8,11 +8,9 @@ namespace Faust.SetItems.Auras
     public class AuraController : NetworkBehaviour
     {
         public float baseAttackInterval = 0.25f;
-        public float baseRadius = 16f;
-        public float RadiusPer = 2f;
-        public float DamageCoefficientPerTick = 2f;
-        public float DamageCoefficientPerTickPer = 1f;
-        public float ProcCoefficientPerTick = 0.2f;
+        public float baseRadius = 13f;
+        public float DamageMultiplier = 4f;
+        public float ProcCoefficientPerTick = 0.0f;
         private float attackStopwatch;
 
         [SyncVar]
@@ -62,7 +60,7 @@ namespace Faust.SetItems.Auras
                     procCoefficient = ProcCoefficientPerTick,
                     radius = actualRadius,
                     baseForce = 0f,
-                    baseDamage = NetworkedBodyAttachment.attachedBody.damage * (DamageCoefficientPerTick + (DamageCoefficientPerTickPer * finalIcicleCount)),
+                    baseDamage = NetworkedBodyAttachment.attachedBody.damage * DamageMultiplier,
                     bonusForce = Vector3.zero,
                     crit = false,
                     damageType = DamageType.IgniteOnHit,
@@ -76,13 +74,7 @@ namespace Faust.SetItems.Auras
         {
             if (NetworkedBodyAttachment)
             {
-                //var oldRadius = actualRadius;
                 actualRadius = NetworkedBodyAttachment.attachedBody ? (NetworkedBodyAttachment.attachedBody.radius + baseRadius) : baseRadius;
-                //actualRadius = NetworkedBodyAttachment.attachedBody ? (NetworkedBodyAttachment.attachedBody.radius + baseRadius + RadiusPer * finalIcicleCount) : 1f;
-                //if(oldRadius != actualRadius)
-                //{
-                //    Log.LogInfo($"base radius is now {baseRadius + RadiusPer * finalIcicleCount}");
-                //}
             }
         }
 
@@ -91,14 +83,14 @@ namespace Faust.SetItems.Auras
             var attachedBody = NetworkedBodyAttachment.attachedBody;
             if (attachedBody)
             {
-                auraEffectTransform.position = NetworkedBodyAttachment.attachedBody.corePosition;
+                auraEffectTransform.position = NetworkedBodyAttachment.attachedBody.footPosition;
                 auraEffectTransform.localScale = new Vector3(actualRadius, actualRadius, actualRadius);
                 if (!cameraTargetParams)
                 {
                     cameraTargetParams = attachedBody.GetComponent<CameraTargetParams>();
                     return;
                 }
-                cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+                cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
             }
         }
 
@@ -116,7 +108,7 @@ namespace Faust.SetItems.Auras
             }
             if (cameraTargetParams)
             {
-                cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+                cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Standard);
             }
         }
     }

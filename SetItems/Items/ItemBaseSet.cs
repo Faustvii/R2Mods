@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using Faust.Shared;
 using RoR2;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,49 @@ namespace Faust.SetItems.Items
     public abstract class ItemBaseSet
     {
         public abstract List<ItemBase> SetItems { get; }
-        public virtual List<CharacterBody> PlayersWithTwoSetBuff { get; } = new List<CharacterBody>();
-        public virtual List<CharacterBody> PlayersWithFourSetBuff { get; } = new List<CharacterBody>();
+        public virtual List<CharacterBody> EntitiesWithTwoSetBuff { get; } = new List<CharacterBody>();
+        public virtual List<CharacterBody> EntitiesWithFourSetBuff { get; } = new List<CharacterBody>();
         public abstract string SetName { get; }
+        public abstract void CreateConfig(ConfigFile config);
 
         public virtual void Hooks()
         {
             On.RoR2.CharacterBody.OnInventoryChanged += CharacterBody_OnInventoryChanged;
+            On.RoR2.Inventory.CopyItemsFrom_Inventory_Func2 += Inventory_CopyItemsFrom_Inventory_Func2;
+        }
+
+        private void Inventory_CopyItemsFrom_Inventory_Func2(On.RoR2.Inventory.orig_CopyItemsFrom_Inventory_Func2 orig, Inventory self, Inventory other, Func<ItemIndex, bool> filter)
+        {
+            orig(self, other, filter);
+            if (!NetworkServer.active)
+                return;
+
+            var turrentMaster = self.GetComponent<CharacterMaster>();
+            var playerMaster = other.GetComponent<CharacterMaster>();
+            if (!turrentMaster || !playerMaster)
+                return;
+
+            var playerBody = playerMaster.GetBody();
+            var turretBody = turrentMaster.GetBody();
+            if (!playerBody || !turretBody || !playerBody.isPlayerControlled)
+            {
+                Log.LogDebug($"is playerBody controlled by player: {playerBody?.isPlayerControlled} - {playerBody?.name}");
+                return;
+            }
+
+            Log.LogDebug($"CopyTo: '{self.name}' - CopyFrom: '{other.name}'");
+            var equippedPieces = UniqueEquippedSetItems(playerBody);
+            if (equippedPieces >= 2)
+            {
+                ApplyTwoPieceEffect(turretBody, false);
+            }
         }
 
         private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
-            if (!self || !self.isPlayerControlled || !NetworkServer.active)
+
+            if (!NetworkServer.active || !self || !self.isPlayerControlled)
             {
                 return;
             }
@@ -41,29 +72,30 @@ namespace Faust.SetItems.Items
             var equippedPieces = UniqueEquippedSetItems(self);
             if (equippedPieces >= 2)
             {
-                if (!PlayersWithTwoSetBuff.Any(x => x == self))
-                    ApplyTwoPieceEffect(self);
+                if (!EntitiesWithTwoSetBuff.Any(x => x == self))
+                    ApplyTwoPieceEffect(self, true);
             }
             else
             {
-                if (PlayersWithTwoSetBuff.Any(x => x == self))
-                    RemoveTwoPieceEffect(self); ;
+                if (EntitiesWithTwoSetBuff.Any(x => x == self))
+                    RemoveTwoPieceEffect(self, true);
             }
             if (equippedPieces >= 4)
             {
-                if (!PlayersWithFourSetBuff.Any(x => x == self))
-                    ApplyFourPieceEffect(self);
+                if (!EntitiesWithFourSetBuff.Any(x => x == self))
+                    ApplyFourPieceEffect(self, true);
             }
             else
             {
-                if (PlayersWithFourSetBuff.Any(x => x == self))
-                    RemoveFourPieceEffect(self);
+                if (EntitiesWithFourSetBuff.Any(x => x == self))
+                    RemoveFourPieceEffect(self, true);
             }
 
         }
 
         public virtual void Init(ConfigFile config)
         {
+            CreateConfig(config);
             Hooks();
         }
 
@@ -72,24 +104,24 @@ namespace Faust.SetItems.Items
             return SetItems.Count(x => x.HasItem(body));
         }
 
-        public virtual void ApplyTwoPieceEffect(CharacterBody body)
+        public virtual void ApplyTwoPieceEffect(CharacterBody body, bool isPlayer)
         {
-            PlayersWithTwoSetBuff.Add(body);
+            EntitiesWithTwoSetBuff.Add(body);
         }
 
-        public virtual void ApplyFourPieceEffect(CharacterBody body)
+        public virtual void ApplyFourPieceEffect(CharacterBody body, bool isPlayer)
         {
-            PlayersWithFourSetBuff.Add(body);
+            EntitiesWithFourSetBuff.Add(body);
         }
 
-        public virtual void RemoveTwoPieceEffect(CharacterBody body)
+        public virtual void RemoveTwoPieceEffect(CharacterBody body, bool isPlayer)
         {
-            PlayersWithTwoSetBuff.Remove(body);
+            EntitiesWithTwoSetBuff.Remove(body);
         }
 
-        public virtual void RemoveFourPieceEffect(CharacterBody body)
+        public virtual void RemoveFourPieceEffect(CharacterBody body, bool isPlayer)
         {
-            PlayersWithFourSetBuff.Remove(body);
+            EntitiesWithFourSetBuff.Remove(body);
         }
     }
 }

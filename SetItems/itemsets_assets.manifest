@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 884760284
+CRC: 820303096
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bf7662ab41dee89a5f001e24fdaa396c
+    Hash: 2a32a635a919253db2d02605e706dc50
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1aa59a82e9f13c206a2a0a58778f34ce
@@ -34,14 +34,12 @@ ClassTypes:
 Assets:
 - Assets/Models/Prefabs/Items/FireGods/FireGodsWand1.prefab
 - Assets/Textures/Icons/Items/FireGodsWand3Icon.png
-- Assets/Models/Prefabs/Effects/FireMagicCircle.prefab
+- Assets/Models/Prefabs/Effects/IceAuraCircle.prefab
 - Assets/Textures/Icons/Items/FireGodsWand4Icon.png
-- Assets/Models/Prefabs/Effects/AuraCircle.prefab
+- Assets/Models/Prefabs/Effects/FireAuraCircle.prefab
 - Assets/Models/Prefabs/Items/FireGods/FireGodsWand3.prefab
 - Assets/Models/Prefabs/Items/FireGods/FireGodsWand4.prefab
-- Assets/Models/Prefabs/Effects/Orb.prefab
 - Assets/Models/Prefabs/Items/FireGods/FireGodsWand2.prefab
 - Assets/Textures/Icons/Items/FireGodsWand1Icon.png
-- Assets/Models/Prefabs/Effects/IceMagicCircle.prefab
 - Assets/Textures/Icons/Items/FireGodsWand2Icon.png
 Dependencies: []

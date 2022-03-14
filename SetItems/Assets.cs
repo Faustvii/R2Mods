@@ -32,11 +32,11 @@ namespace Faust.SetItems
 
         private static void LoadAuraEffect()
         {
-            var aura = mainAssetBundle.LoadAsset<GameObject>("AuraCircle");
+            var aura = mainAssetBundle.LoadAsset<GameObject>("FireAuraCircle");
             aura.AddComponent<NetworkIdentity>();
             aura.AddComponent<NetworkedBodyAttachment>();
             aura.AddComponent<AuraController>();
-            fireAuraCirclePrefab = aura.InstantiateClone("FireMagicCircle", true);
+            fireAuraCirclePrefab = aura.InstantiateClone("FireAuraCircle", true);
             Object.Destroy(aura);
         }
     }

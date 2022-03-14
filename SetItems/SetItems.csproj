@@ -11,114 +11,40 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BetterUI" Version="2.4.7" />
+    <PackageReference Include="BetterUnityPlugin" Version="1.1.1" />
+    <PackageReference Include="RiskOfRain2.GameLibs" Version="1.2.2-r.0" />
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.19" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.26" IncludeAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="itemsets_assets" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>Libs\0Harmony.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="0Harmony20">
-      <HintPath>Libs\0Harmony20.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>Libs\Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>Libs\BepInEx.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="BepInEx.Harmony">
-      <HintPath>Libs\BepInEx.Harmony.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="BepInEx.MonoMod.HookGenPatcher">
-      <HintPath>Libs\BepInEx.MonoMod.HookGenPatcher.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="BepInEx.MonoMod.Loader">
-      <HintPath>Libs\BepInEx.MonoMod.Loader.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="BepInEx.Preloader">
-      <HintPath>Libs\BepInEx.Preloader.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="HarmonyXInterop">
-      <HintPath>Libs\HarmonyXInterop.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="HGCSharpUtils">
-      <HintPath>Libs\HGCSharpUtils.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
     <Reference Include="ItemStats">
-      <HintPath>Libs\ItemStats.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>..\ItemSets\libs\ItemStats.dll</HintPath>
     </Reference>
-    <Reference Include="MMHOOK_Assembly-CSharp">
-      <HintPath>Libs\MMHOOK_Assembly-CSharp.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Libs\Mono.Cecil.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Mdb">
-      <HintPath>Libs\Mono.Cecil.Mdb.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Pdb">
-      <HintPath>Libs\Mono.Cecil.Pdb.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Mono.Cecil.Rocks">
-      <HintPath>Libs\Mono.Cecil.Rocks.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>Libs\MonoMod.RuntimeDetour.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="MonoMod.Utils">
-      <HintPath>Libs\MonoMod.Utils.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="MMHOOK_RoR2">
+      <HintPath>libs\MMHOOK_RoR2.dll</HintPath>
     </Reference>
     <Reference Include="R2API">
       <HintPath>Libs\R2API.dll</HintPath>
-      <Private>false</Private>
     </Reference>
-    <Reference Include="R2API.Patcher">
-      <HintPath>Libs\R2API.Patcher.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>Libs\UnityEngine.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>Libs\UnityEngine.AssetBundleModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>Libs\UnityEngine.CoreModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Libs\UnityEngine.Networking.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>Libs\UnityEngine.ParticleSystemModule.dll</HintPath>
-      <Private>false</Private>
+    <Reference Include="RiskOfOptions">
+      <HintPath>Libs\RiskOfOptions.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Faust.Shared\Faust.Shared.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
