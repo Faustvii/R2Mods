@@ -1,5 +1,4 @@
 ﻿using BepInEx.Configuration;
-using Faust.SetItems.SoftDependencies;
 using Faust.SetItems.Utils;
 using Faust.Shared.Compatability;
 using RoR2;
@@ -39,7 +38,7 @@ namespace Faust.SetItems.Items.FireGod
         {
             if (RiskOfOptionsCompat.IsInstalled)
             {
-                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(false, BaseMovementSpeedPercentageIncrease, AdditionalMovementSpeedPercentageIncrease);
+                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(BaseMovementSpeedPercentageIncrease, AdditionalMovementSpeedPercentageIncrease);
             }
         }
 

@@ -80,7 +80,7 @@ namespace Faust.SetItems.Items.FireGod
         {
             if (RiskOfOptionsCompat.IsInstalled)
             {
-                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(false, BaseAttackSpeedPercentageIncrease, AdditionalAttackSpeedPercentageIncrease);
+                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(BaseAttackSpeedPercentageIncrease, AdditionalAttackSpeedPercentageIncrease);
             }
         }
 

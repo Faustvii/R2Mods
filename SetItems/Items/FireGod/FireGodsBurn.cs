@@ -41,7 +41,7 @@ namespace Faust.SetItems.Items.FireGod
         {
             if (RiskOfOptionsCompat.IsInstalled)
             {
-                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(false, ActiviationPercentChance, AdditionalActiviationPercentChance);
+                RiskOfOptionsCompat.AddSliderToPercentageOptionsDecimal(ActiviationPercentChance, AdditionalActiviationPercentChance);
             }
         }
 

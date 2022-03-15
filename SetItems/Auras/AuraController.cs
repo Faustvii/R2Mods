@@ -1,4 +1,6 @@
-﻿using RoR2;
+﻿using BepInEx.Configuration;
+using Faust.SetItems.Items.FireGod;
+using RoR2;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,8 +10,8 @@ namespace Faust.SetItems.Auras
     public class AuraController : NetworkBehaviour
     {
         public float baseAttackInterval = 0.25f;
-        public float baseRadius = 13f;
-        public float DamageMultiplier = 4f;
+        public ConfigEntry<float> baseRadius = FireGodsSet.AuraRadius;
+        public ConfigEntry<float> DamageMultiplier = FireGodsSet.AuraDamageMultiplier;
         public float ProcCoefficientPerTick = 0.0f;
         private float attackStopwatch;
 
@@ -60,7 +62,7 @@ namespace Faust.SetItems.Auras
                     procCoefficient = ProcCoefficientPerTick,
                     radius = actualRadius,
                     baseForce = 0f,
-                    baseDamage = NetworkedBodyAttachment.attachedBody.damage * DamageMultiplier,
+                    baseDamage = NetworkedBodyAttachment.attachedBody.damage * DamageMultiplier.Value,
                     bonusForce = Vector3.zero,
                     crit = false,
                     damageType = DamageType.IgniteOnHit,
@@ -74,7 +76,7 @@ namespace Faust.SetItems.Auras
         {
             if (NetworkedBodyAttachment)
             {
-                actualRadius = NetworkedBodyAttachment.attachedBody ? (NetworkedBodyAttachment.attachedBody.radius + baseRadius) : baseRadius;
+                actualRadius = NetworkedBodyAttachment.attachedBody ? (NetworkedBodyAttachment.attachedBody.radius + baseRadius.Value) : baseRadius.Value;
             }
         }
 
@@ -84,7 +86,8 @@ namespace Faust.SetItems.Auras
             if (attachedBody)
             {
                 auraEffectTransform.position = NetworkedBodyAttachment.attachedBody.footPosition;
-                auraEffectTransform.localScale = new Vector3(actualRadius, actualRadius, actualRadius);
+                var radiusMultiplier = 3.2f;
+                auraEffectTransform.localScale = new Vector3(actualRadius * radiusMultiplier, actualRadius * radiusMultiplier, actualRadius * radiusMultiplier);
                 if (!cameraTargetParams)
                 {
                     cameraTargetParams = attachedBody.GetComponent<CameraTargetParams>();
