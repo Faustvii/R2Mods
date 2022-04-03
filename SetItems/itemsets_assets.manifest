@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 820303096
+CRC: 3343173369
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2a32a635a919253db2d02605e706dc50
+    Hash: 957fe73a4cb705ebc501e35423cab8fd
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1aa59a82e9f13c206a2a0a58778f34ce
+    Hash: a86f78335e5f2f8d9b0f367daea406f6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -31,6 +31,7 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 213
   Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Models/Prefabs/Items/FireGods/FireGodsWand1.prefab
 - Assets/Textures/Icons/Items/FireGodsWand3Icon.png
