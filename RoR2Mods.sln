@@ -5,16 +5,6 @@ VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QoLChests", "QoLChests\QoLChests.csproj", "{2F8A40CC-6D15-486D-B689-0A7A472DB89E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SetItems", "SetItems\SetItems.csproj", "{90D4AC70-8041-4D98-A29B-770E8E925876}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QoLBazaar", "QoLBazaar\QoLBazaar.csproj", "{F6D4BF59-2251-404F-A2F5-9FEDEC3A96C0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LunarCoinShare", "LunarCoinShare\LunarCoinShare.csproj", "{0F8630A9-A7D6-4A98-8FF4-39D2A9AF2C09}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faust.Shared", "Faust.Shared\Faust.Shared.csproj", "{1BCDD460-4B42-4BF1-B732-91E80A1070B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faust.Test", "Faust.Test\Faust.Test.csproj", "{24538449-6A71-40BC-92D4-2485AC4A0C97}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
