@@ -25,9 +25,8 @@ public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(Delay);
-        var baseRenderer = GetComponent<Renderer>();
-        var childRenderer = GetComponentInChildren<Renderer>();
-        Renderer[] allRenderers = [baseRenderer, childRenderer];
+
+        var allRenderers = Utils.GetRenderers(gameObject);
         foreach (var renderer in allRenderers)
         {
             if (renderer)

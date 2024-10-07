@@ -25,13 +25,12 @@ public class HideWithDelay(float Delay = 1f) : MonoBehaviour
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(Delay);
-        var baseRenderer = GetComponent<Renderer>();
-        var childRenderer = GetComponentInChildren<Renderer>();
-        Renderer[] allRenderes = [baseRenderer, childRenderer];
+        var allRenderers = Utils.GetRenderers(gameObject);
+
         var baseHighlights = GetComponent<Highlight>();
         var childHighlights = GetComponentsInChildren<Highlight>();
         Highlight[] allHighlights = [baseHighlights, .. childHighlights];
-        foreach (var renderer in allRenderes)
+        foreach (var renderer in allRenderers)
         {
             if (renderer)
             {
