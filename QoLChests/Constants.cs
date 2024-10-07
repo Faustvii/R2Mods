@@ -5,186 +5,186 @@ namespace Faust.QoLChests;
 
 public static class Constants
 {
-    public static HighlightStruct[] ChestResourcesPaths =
+    public static HighlightableResource[] ChestResourcesPaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Barrel1/Barrel1.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/CasinoChest/CasinoChest.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/CategoryChest/CategoryChestDamage.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/CategoryChest/CategoryChestHealing.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/CategoryChest/CategoryChestUtility.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Chest1/Chest1.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Chest2/Chest2.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/EquipmentBarrel/EquipmentBarrel.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/GoldChest/GoldChest.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/LunarChest/LunarChest.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/DLC1/CategoryChest2/CategoryChest2Damage Variant.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/DLC1/CategoryChest2/CategoryChest2Healing Variant.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/DLC1/CategoryChest2/CategoryChest2Utility Variant.prefab",
             InteractableCategory.Chest
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/DLC1/VoidChest/VoidChest.prefab",
             InteractableCategory.Chest
         ),
     ];
 
-    public static HighlightStruct[] StealthedChestResourcePaths =
+    public static HighlightableResource[] StealthedChestResourcePaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Chest1StealthedVariant/Chest1StealthedVariant.prefab",
             InteractableCategory.Chest
         ),
     ];
 
-    public static HighlightStruct[] ShopResourcePaths =
+    public static HighlightableResource[] ShopResourcePaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/LunarShopTerminal/LunarShopTerminal.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/MultiShopEquipmentTerminal/MultiShopEquipmentTerminal.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/MultiShopLargeTerminal/MultiShopLargeTerminal.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/MultiShopTerminal/MultiShopTerminal.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/MultiShopTerminal/ShopTerminal.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/TripleShop/TripleShop.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/TripleShopLarge/TripleShopLarge.prefab",
             InteractableCategory.Shop
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/TripleShopEquipment/TripleShopEquipment.prefab",
             InteractableCategory.Shop
         )
     ];
-    public static HighlightStruct[] ScrapperResourcePaths =
+    public static HighlightableResource[] ScrapperResourcePaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Scrapper/Scrapper.prefab",
             InteractableCategory.Scrapper
         ),
     ];
 
-    public static HighlightStruct[] DuplicatorResourcesPaths =
+    public static HighlightableResource[] DuplicatorResourcesPaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Duplicator/Duplicator.prefab",
             InteractableCategory.Duplicator
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/DuplicatorLarge/DuplicatorLarge.prefab",
             InteractableCategory.Duplicator
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/DuplicatorMilitary/DuplicatorMilitary.prefab",
             InteractableCategory.Duplicator
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/DuplicatorWild/DuplicatorWild.prefab",
             InteractableCategory.Duplicator
         ),
     ];
 
-    public static HighlightStruct[] DroneResourcesPaths =
+    public static HighlightableResource[] DroneResourcesPaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/Drone1Broken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/Drone2Broken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/EmergencyDroneBroken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/EquipmentDroneBroken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/FlameDroneBroken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/MegaDroneBroken.prefab",
             InteractableCategory.Drone
         ),
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/MissileDroneBroken.prefab",
             InteractableCategory.Drone
         ),
     ];
 
-    public static HighlightStruct[] TurrentResourcePaths =
+    public static HighlightableResource[] TurrentResourcePaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/Drones/Turret1Broken.prefab",
             InteractableCategory.Turret
         ),
     ];
 
-    public static HighlightStruct[] ArtifactOfDevotionResourcePaths =
+    public static HighlightableResource[] ArtifactOfDevotionResourcePaths =
     [
-        HighlightStruct.CreateFromResourcePath(
+        HighlightableResource.CreateFromResourcePath(
             "RoR2/CU8/LemurianEgg/LemurianEgg.prefab",
             InteractableCategory.Drone
         )
     ];
 
-    public static HighlightStruct[] Starstorm2Interactables =
+    public static HighlightableResource[] Starstorm2Interactables =
     [
         new("ShockDroneBroken", "", InteractableCategory.Drone),
         new("CloneDroneBroken", "", InteractableCategory.Drone),

@@ -1,12 +1,11 @@
 using System.Collections;
-using Faust.Shared;
 using RoR2;
 using UnityEngine;
 
 namespace Faust.QoLChests;
 
 /// <summary>
-/// Attach this to a Renderer component to disable it after a specified delay.
+/// Attach this to a interactable component to "fade" it after a specified delay.
 /// </summary>
 /// <param name="Delay"></param>
 public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
@@ -36,6 +35,7 @@ public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
                 renderer.enabled = false;
             }
         }
+        // For some reason when the renderer is disabled but it has a highlight on it will look faded instead of hidden.
         var highlight = GetComponent<Highlight>();
         if (highlight)
         {
