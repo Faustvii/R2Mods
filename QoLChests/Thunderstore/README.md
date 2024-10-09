@@ -8,6 +8,21 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 
 ## Changelog
 
+### 1.2.0
+
+#### New Features
+
+- More colors available to use for highlighting
+- You can now choose a color per category
+
+#### Fixes
+
+- You should now be able to change settings with Risk of Options mid run and have them take effect immediately
+- Removed collision with hidden chests
+- Fixed Large category chests not being hidden/faded at all
+- Fixed category chests "symbol" not being hidden/faded
+- Fixed Shipping manifest terminals "fire" effect sticking around after hiding the rest
+
 ### 1.1.11
 
 - Forgot to add a hook for setting updates
