@@ -1,5 +1,4 @@
 using System.Collections;
-using RoR2;
 using UnityEngine;
 
 namespace Faust.QoLChests;
@@ -25,26 +24,13 @@ public class HideWithDelay(float Delay = 1f) : MonoBehaviour
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(Delay);
-        var allRenderers = Utils.GetRenderers(gameObject);
 
-        var baseHighlights = GetComponent<Highlight>();
-        var childHighlights = GetComponentsInChildren<Highlight>();
-        Highlight[] allHighlights = [baseHighlights, .. childHighlights];
-        foreach (var renderer in allRenderers)
-        {
-            if (renderer)
-            {
-                renderer.enabled = false;
-            }
-        }
-        foreach (var highlight in allHighlights)
-        {
-            if (highlight)
-            {
-                highlight.isOn = false;
-                highlight.enabled = false;
-            }
-        }
+        Utils.DisableColliders(gameObject);
+        Utils.DisableRenderers(gameObject);
+        Utils.DisableHighlights(gameObject);
+
+        Utils.DisableCommonVisualEffects(gameObject);
+
         Destroy(this);
     }
 }

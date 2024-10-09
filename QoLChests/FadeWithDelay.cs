@@ -26,14 +26,9 @@ public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
         // Wait for the specified delay
         yield return new WaitForSeconds(Delay);
 
-        var allRenderers = Utils.GetRenderers(gameObject);
-        foreach (var renderer in allRenderers)
-        {
-            if (renderer)
-            {
-                renderer.enabled = false;
-            }
-        }
+        Utils.DisableRenderers(gameObject);
+        Utils.DisableColliders(gameObject);
+        Utils.DisableCommonVisualEffects(gameObject);
         // For some reason when the renderer is disabled but it has a highlight on it will look faded instead of hidden.
         var highlight = GetComponent<Highlight>();
         if (highlight)

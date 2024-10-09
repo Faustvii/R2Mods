@@ -94,18 +94,6 @@ public static class Constants
         HighlightableResource.CreateFromResourcePath(
             "RoR2/Base/MultiShopTerminal/ShopTerminal.prefab",
             InteractableCategory.Shop
-        ),
-        HighlightableResource.CreateFromResourcePath(
-            "RoR2/Base/TripleShop/TripleShop.prefab",
-            InteractableCategory.Shop
-        ),
-        HighlightableResource.CreateFromResourcePath(
-            "RoR2/Base/TripleShopLarge/TripleShopLarge.prefab",
-            InteractableCategory.Shop
-        ),
-        HighlightableResource.CreateFromResourcePath(
-            "RoR2/Base/TripleShopEquipment/TripleShopEquipment.prefab",
-            InteractableCategory.Shop
         )
     ];
     public static HighlightableResource[] ScrapperResourcePaths =
