@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Faust.Shared;
 using RoR2;
 using UnityEngine;
 
@@ -19,28 +21,36 @@ public static class Utils
         return allRenderers;
     }
 
-    public static void DisableRenderers(GameObject gameObject)
+    public static Renderer[] DisableRenderers(GameObject gameObject)
     {
         var allRenderers = GetRenderers(gameObject);
+        var disabledRenderes = new List<Renderer>(allRenderers.Length);
         foreach (var renderer in allRenderers)
         {
             if (renderer)
             {
+                Log.LogInfo($"Disabling renderer {renderer.name}");
                 renderer.enabled = false;
+                disabledRenderes.Add(renderer);
             }
         }
+        return [.. disabledRenderes];
     }
 
-    public static void DisableColliders(GameObject gameObject)
+    public static Collider[] DisableColliders(GameObject gameObject)
     {
         Collider[] allColliders = gameObject.GetComponentsInChildren<Collider>();
+        var disabledColliders = new List<Collider>(allColliders.Length);
         foreach (var collider in allColliders)
         {
             if (collider)
             {
+                Log.LogInfo($"Disabling collider {collider.name}");
                 collider.enabled = false;
+                disabledColliders.Add(collider);
             }
         }
+        return [.. disabledColliders];
     }
 
     public static Highlight[] GetHighlights(GameObject gameObject)
@@ -52,51 +62,57 @@ public static class Utils
         return allHighlights;
     }
 
-    public static void DisableHighlights(GameObject gameObject)
+    public static Highlight[] DisableHighlights(GameObject gameObject)
     {
         var allHighlights = GetHighlights(gameObject);
+        var disabledHighlights = new List<Highlight>(allHighlights.Length);
         foreach (var highlight in allHighlights)
         {
             if (highlight)
             {
                 highlight.isOn = false;
                 highlight.enabled = false;
+                disabledHighlights.Add(highlight);
             }
         }
+        return [.. disabledHighlights];
     }
 
     public static void DisableCommonVisualEffects(GameObject gameObject)
     {
-        DisableParticleSystem(gameObject);
-        DisableTrailRenderer(gameObject);
-        DisableLights(gameObject);
+        SetParticleSystem(gameObject, active: false);
+        SetTrailRenderer(gameObject, enabled: false);
+        SetLights(gameObject, enabled: false);
     }
 
-    private static void DisableParticleSystem(GameObject gameObject)
+    private static void SetParticleSystem(GameObject gameObject, bool active)
     {
         ParticleSystem[] particleSystems = gameObject.GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem ps in particleSystems)
         {
+            Log.LogInfo($"Disabling particle system {ps.name}");
             ps.Stop(); // Stop the particle system
-            ps.gameObject.SetActive(false); // Or disable it completely
+            ps.gameObject.SetActive(active); // Or disable it completely
         }
     }
 
-    private static void DisableTrailRenderer(GameObject gameObject)
+    private static void SetTrailRenderer(GameObject gameObject, bool enabled)
     {
         TrailRenderer[] trailRenderers = gameObject.GetComponentsInChildren<TrailRenderer>();
         foreach (TrailRenderer trail in trailRenderers)
         {
-            trail.enabled = false; // Disable trail renderer
+            Log.LogInfo($"Disabling trail renderer {trail.name}");
+            trail.enabled = enabled;
         }
     }
 
-    private static void DisableLights(GameObject gameObject)
+    private static void SetLights(GameObject gameObject, bool enabled)
     {
         Light[] lights = gameObject.GetComponentsInChildren<Light>();
         foreach (Light light in lights)
         {
-            light.enabled = false; // Disable the light component
+            Log.LogInfo($"Disabling light {light.name}");
+            light.enabled = enabled;
         }
     }
 }

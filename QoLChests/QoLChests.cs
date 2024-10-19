@@ -54,6 +54,7 @@ namespace Faust.QoLChests
             On.RoR2.SceneDirector.PopulateScene += (orig, self) =>
             {
                 TrackedSceneInteractables.Clear();
+                InteractablesToHighlight.Clear();
                 orig(self);
                 ConfigureHighlights();
                 Log.LogInfo(
@@ -116,6 +117,7 @@ namespace Faust.QoLChests
         {
             // Load highlightable resources
             AddResourcesToHighlights(Constants.ChestResourcesPaths);
+            AddResourcesToHighlights(Constants.LockboxResourcesPaths);
             AddResourcesToHighlights(Constants.StealthedChestResourcePaths);
             AddResourcesToHighlights(Constants.ShopResourcePaths);
             AddResourcesToHighlights(Constants.ScrapperResourcePaths);
@@ -185,14 +187,26 @@ namespace Faust.QoLChests
         )
         {
             orig.Invoke(self);
-            var renderers = self
-                .gameObject.GetComponent<ModelLocator>()
-                .modelTransform.GetComponentsInChildren<Renderer>();
 
-            foreach (var rend in renderers)
+            var modelLocator = self.gameObject.GetComponent<ModelLocator>();
+            if (modelLocator)
             {
-                rend.enabled = true;
+                var modelTransformHide =
+                    modelLocator.modelTransform.gameObject.GetComponent<HideWithDelay>();
+                var modelTransformFade =
+                    modelLocator.modelTransform.gameObject.GetComponent<FadeWithDelay>();
+                if (modelTransformHide)
+                    Destroy(modelTransformHide);
+                if (modelTransformFade)
+                    Destroy(modelTransformFade);
             }
+            var hide = self.gameObject.GetComponent<HideWithDelay>();
+            if (hide)
+                Destroy(hide);
+            var fade = self.gameObject.GetComponent<FadeWithDelay>();
+            if (fade)
+                Destroy(fade);
+
             if (Configuration.HighlightChests.Value)
             {
                 AddHighlight(self.gameObject);
@@ -284,6 +298,8 @@ namespace Faust.QoLChests
 
         private static void RemoveHighlight(GameObject self)
         {
+            if (!self)
+                return;
             var highlight = self.GetComponent<Highlight>();
             if (highlight)
             {
