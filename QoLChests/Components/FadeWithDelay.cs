@@ -1,9 +1,8 @@
 using System.Collections;
-using Faust.Shared;
 using RoR2;
 using UnityEngine;
 
-namespace Faust.QoLChests;
+namespace Faust.QoLChests.Components;
 
 /// <summary>
 /// Attach this to a interactable component to "fade" it after a specified delay.
@@ -32,7 +31,6 @@ public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
 
         renderers = Utils.DisableRenderers(gameObject);
         colliders = Utils.DisableColliders(gameObject);
-        Log.LogInfo($"FadeWithDelay DisableRenderers {renderers.Length} DisableColliders {colliders.Length}");
         Utils.DisableCommonVisualEffects(gameObject);
         // For some reason when the renderer is disabled but it has a highlight on it will look faded instead of hidden.
         var highlight = GetComponent<Highlight>();
@@ -47,14 +45,15 @@ public class FadeWithDelay(float Delay = 1f) : MonoBehaviour
 
     public void OnDestroy()
     {
-        Log.LogInfo($"FadeWithDelay OnDestroy {gameObject.name} colliders {colliders.Length} renderers {renderers.Length}");
         foreach (var collider in colliders)
         {
-            collider.enabled = true;
+            if (collider)
+                collider.enabled = true;
         }
         foreach (var renderer in renderers)
         {
-            renderer.enabled = true;
+            if (renderer)
+                renderer.enabled = true;
         }
     }
 }

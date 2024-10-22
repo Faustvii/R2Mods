@@ -29,7 +29,7 @@ public static class Utils
         {
             if (renderer)
             {
-                Log.LogInfo($"Disabling renderer {renderer.name}");
+                Log.LogDebug($"Disabling renderer {renderer.name}");
                 renderer.enabled = false;
                 disabledRenderes.Add(renderer);
             }
@@ -45,37 +45,12 @@ public static class Utils
         {
             if (collider)
             {
-                Log.LogInfo($"Disabling collider {collider.name}");
+                Log.LogDebug($"Disabling collider {collider.name}");
                 collider.enabled = false;
                 disabledColliders.Add(collider);
             }
         }
         return [.. disabledColliders];
-    }
-
-    public static Highlight[] GetHighlights(GameObject gameObject)
-    {
-        var baseHighlight = gameObject.GetComponent<Highlight>();
-        var childHighlights = gameObject.GetComponentsInChildren<Highlight>();
-        Highlight[] allHighlights = [baseHighlight, .. childHighlights];
-
-        return allHighlights;
-    }
-
-    public static Highlight[] DisableHighlights(GameObject gameObject)
-    {
-        var allHighlights = GetHighlights(gameObject);
-        var disabledHighlights = new List<Highlight>(allHighlights.Length);
-        foreach (var highlight in allHighlights)
-        {
-            if (highlight)
-            {
-                highlight.isOn = false;
-                highlight.enabled = false;
-                disabledHighlights.Add(highlight);
-            }
-        }
-        return [.. disabledHighlights];
     }
 
     public static void DisableCommonVisualEffects(GameObject gameObject)
@@ -85,34 +60,37 @@ public static class Utils
         SetLights(gameObject, enabled: false);
     }
 
-    private static void SetParticleSystem(GameObject gameObject, bool active)
+    private static ParticleSystem[] SetParticleSystem(GameObject gameObject, bool active)
     {
         ParticleSystem[] particleSystems = gameObject.GetComponentsInChildren<ParticleSystem>();
         foreach (ParticleSystem ps in particleSystems)
         {
-            Log.LogInfo($"Disabling particle system {ps.name}");
+            Log.LogDebug($"Disabling particle system {ps.name}");
             ps.Stop(); // Stop the particle system
             ps.gameObject.SetActive(active); // Or disable it completely
         }
+        return particleSystems;
     }
 
-    private static void SetTrailRenderer(GameObject gameObject, bool enabled)
+    private static TrailRenderer[] SetTrailRenderer(GameObject gameObject, bool enabled)
     {
         TrailRenderer[] trailRenderers = gameObject.GetComponentsInChildren<TrailRenderer>();
         foreach (TrailRenderer trail in trailRenderers)
         {
-            Log.LogInfo($"Disabling trail renderer {trail.name}");
+            Log.LogDebug($"Disabling trail renderer {trail.name}");
             trail.enabled = enabled;
         }
+        return trailRenderers;
     }
 
-    private static void SetLights(GameObject gameObject, bool enabled)
+    private static Light[] SetLights(GameObject gameObject, bool enabled)
     {
         Light[] lights = gameObject.GetComponentsInChildren<Light>();
         foreach (Light light in lights)
         {
-            Log.LogInfo($"Disabling light {light.name}");
+            Log.LogDebug($"Disabling light {light.name}");
             light.enabled = enabled;
         }
+        return lights;
     }
 }

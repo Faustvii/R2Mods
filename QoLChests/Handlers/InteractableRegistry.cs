@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Faust.QoLChests.Configs;
 
-namespace Faust.QoLChests;
+namespace Faust.QoLChests.Handlers;
 
 public static class InteractableRegistry
 {

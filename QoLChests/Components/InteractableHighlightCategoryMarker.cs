@@ -1,7 +1,7 @@
 using Faust.QoLChests.Configs;
 using UnityEngine;
 
-namespace Faust.QoLChests;
+namespace Faust.QoLChests.Components;
 
 public class InteractableHighlightCategoryMarker : MonoBehaviour
 {

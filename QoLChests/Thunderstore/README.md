@@ -14,6 +14,8 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 
 - More colors available to use for highlighting
 - You can now choose a color per category
+- Added highlighting of Starstorm2 drones
+- Added highlight of lockboxes
 
 #### Fixes
 
@@ -22,6 +24,7 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 - Fixed Large category chests not being hidden/faded at all
 - Fixed category chests "symbol" not being hidden/faded
 - Fixed Shipping manifest terminals "fire" effect sticking around after hiding the rest
+- Fixed Hide/Fade of shops only working when you are the host
 
 ### 1.1.11
 

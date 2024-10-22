@@ -1,9 +1,8 @@
 using System.Collections;
-using Faust.Shared;
-using RoR2;
+using Faust.QoLChests.Handlers;
 using UnityEngine;
 
-namespace Faust.QoLChests;
+namespace Faust.QoLChests.Components;
 
 /// <summary>
 /// Attach this to a Renderer component to disable it after a specified delay.
@@ -32,19 +31,13 @@ public class HideWithDelay(float Delay = 1f) : MonoBehaviour
 
         renderers = Utils.DisableRenderers(gameObject);
         colliders = Utils.DisableColliders(gameObject);
-        Log.LogInfo(
-            $"HideWithDelay DisableRenderers {renderers.Length} DisableColliders {colliders.Length}"
-        );
-        Utils.DisableHighlights(gameObject);
+        HighlightHandler.Disable(gameObject);
 
         Utils.DisableCommonVisualEffects(gameObject);
     }
 
     public void OnDestroy()
     {
-        Log.LogInfo(
-            $"HideWithDelay OnDestroy {gameObject.name} colliders {colliders.Length} renderers {renderers.Length}"
-        );
         foreach (var collider in colliders)
         {
             if (collider)
