@@ -58,7 +58,8 @@ public static class Constants
             InteractableCategory.Shop
         ),
         new("RoR2/Base/MultiShopTerminal/MultiShopTerminal.prefab", InteractableCategory.Shop),
-        new("RoR2/Base/MultiShopTerminal/ShopTerminal.prefab", InteractableCategory.Shop)
+        new("RoR2/Base/MultiShopTerminal/ShopTerminal.prefab", InteractableCategory.Shop),
+        new("RoR2/DLC1/FreeChestTerminalShippingDrone/FreeChestTerminalShippingDrone.prefab", InteractableCategory.Shop),
     ];
     public static HighlightableResource[] ScrapperResourcePaths =
     [
