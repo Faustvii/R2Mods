@@ -17,7 +17,7 @@ public static class HighlightHandler
         }
     }
 
-    public static void Enable(GameObject interactable)
+    public static void Enable(GameObject interactable, bool ignoreUsed = false)
     {
         if (!interactable)
             return;
@@ -26,23 +26,14 @@ public static class HighlightHandler
         if (!highlight)
             return;
 
-        if (ModConfig.Instance.RemoveHighlightFromUsed.Value)
+        if (ModConfig.Instance.RemoveHighlightFromUsed.Value && ignoreUsed is false)
         {
-            var multiShop = interactable.GetComponent<MultiShopController>();
-            if (multiShop && multiShop.Networkavailable is false)
+            var interactableUsed = interactable.GetComponent<InteractableUsed>();
+            if (interactableUsed)
             {
-                return;
-            }
-
-            var barrel = interactable.GetComponent<BarrelInteraction>();
-            if (barrel && barrel.Networkopened is true)
-            {
-                return;
-            }
-
-            var rouletteChestController = interactable.GetComponent<RouletteChestController>();
-            if (rouletteChestController && rouletteChestController.enabled is false)
-            {
+                Log.LogInfo(
+                    "HighlightHandler.Enable: Interactable has been used, disabling highlight"
+                );
                 return;
             }
         }
@@ -85,16 +76,18 @@ public static class HighlightHandler
         if (!gameObject)
             return [];
         var baseHighlight = gameObject.GetComponent<Highlight>();
-        var childHighlights = gameObject.GetComponentsInChildren<Highlight>();
-        Highlight[] allHighlights = [baseHighlight, .. childHighlights];
 
-        return allHighlights;
+        return [baseHighlight];
     }
 
     private static Highlight[] DisableHighlights(GameObject gameObject)
     {
+        if (!gameObject)
+            return [];
+
         var allHighlights = GetHighlights(gameObject);
         var disabledHighlights = new List<Highlight>(allHighlights.Length);
+
         foreach (var highlight in allHighlights)
         {
             if (highlight)

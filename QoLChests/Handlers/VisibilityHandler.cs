@@ -55,14 +55,24 @@ public static class VisibilityHandler
                 modelLocator.modelTransform.gameObject.GetComponent<HideWithDelay>();
             var modelTransformFade =
                 modelLocator.modelTransform.gameObject.GetComponent<FadeWithDelay>();
+            var modelTransformHasBeenUsed =
+                modelLocator.modelTransform.gameObject.GetComponent<InteractableUsed>();
+            if (modelTransformHasBeenUsed)
+                Object.Destroy(modelTransformHasBeenUsed);
             if (modelTransformHide)
                 Object.Destroy(modelTransformHide);
             if (modelTransformFade)
                 Object.Destroy(modelTransformFade);
         }
+
+        var hasBeenUsed = interactable.gameObject.GetComponent<InteractableUsed>();
+        if (hasBeenUsed)
+            Object.Destroy(hasBeenUsed);
+
         var hide = interactable.gameObject.GetComponent<HideWithDelay>();
         if (hide)
             Object.Destroy(hide);
+
         var fade = interactable.gameObject.GetComponent<FadeWithDelay>();
         if (fade)
             Object.Destroy(fade);

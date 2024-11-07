@@ -1,3 +1,4 @@
+using Faust.QoLChests.Components;
 using Faust.QoLChests.Configs;
 using Faust.QoLChests.Handlers;
 using RoR2;
@@ -19,6 +20,7 @@ public static class ChestHooks
     )
     {
         orig(self);
+        self.outer.gameObject.AddComponent<InteractableUsed>();
         if (ModConfig.Instance.HideEmptyChests.Value)
         {
             VisibilityHandler.Hide(
@@ -38,6 +40,7 @@ public static class ChestHooks
     )
     {
         orig(self);
+        self.outer.gameObject.AddComponent<InteractableUsed>();
         if (ModConfig.Instance.HideEmptyChests.Value)
         {
             VisibilityHandler.Hide(self.outer.gameObject);
@@ -59,7 +62,7 @@ public static class ChestHooks
 
         if (ModConfig.Instance.HighlightChests.Value)
         {
-            HighlightHandler.Enable(self.gameObject);
+            HighlightHandler.Enable(self.gameObject, ignoreUsed: true);
         }
     }
 }

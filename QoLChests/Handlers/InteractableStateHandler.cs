@@ -72,6 +72,12 @@ public static class InteractableStateHandler
         // Add highlights to tracked resources
         foreach (var interactable in InteractablesToHighlight)
         {
+            var hideWithDelay = interactable.GetComponent<HideWithDelay>();
+            var fadeWithDelay = interactable.GetComponent<FadeWithDelay>();
+            var hasBeenUsed = interactable.GetComponent<InteractableUsed>();
+            if (fadeWithDelay || hideWithDelay || hasBeenUsed)
+                continue;
+
             HighlightHandler.Enable(interactable);
         }
     }

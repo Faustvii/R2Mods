@@ -43,6 +43,10 @@ public static class ShopHooks
             .ToArray();
 
         VisibilityHandler.Hide(InteractableCategory.Shop, shopObjects);
+        foreach (var shopObject in shopObjects)
+        {
+            shopObject.AddComponent<InteractableUsed>();
+        }
         if (ModConfig.Instance.RemoveHighlightFromUsed.Value)
         {
             HighlightHandler.Disable(shopObjects);
