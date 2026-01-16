@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using BepInEx;
+using Faust.QoLChests.Compatability;
 using Faust.QoLChests.Configs;
 using Faust.QoLChests.Hooks;
 using Faust.Shared;
@@ -17,7 +18,7 @@ namespace Faust.QoLChests
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "Faust";
         public const string PluginName = nameof(QoLChests);
-        public const string PluginVersion = "1.3.2";
+        public const string PluginVersion = "1.3.3";
 
         protected void Awake()
         {
@@ -32,8 +33,10 @@ namespace Faust.QoLChests
             InteractableSpawnHooks.Register();
             CharacterHooks.Register();
 
+            QualityCompatHandler.Register();
             StarStorm2CompatHandler.Register();
             HunkCompatHandler.Register();
+            SandsweptCompatHandler.Register();
 
             stopwatch.Stop();
 

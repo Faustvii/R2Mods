@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using Faust.QoLChests;
 using Faust.QoLChests.Components;
 using Faust.QoLChests.Configs;
-using Faust.QoLChests.Handlers;
 using Faust.Shared;
+using RoR2;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+
+namespace Faust.QoLChests.Handlers;
 
 public static class InteractableStateHandler
 {
@@ -17,7 +18,7 @@ public static class InteractableStateHandler
     public static void Reset()
     {
         // Remove highlights from tracked resources
-        HighlightHandler.Disable([.. InteractablesToHighlight, ..TrackedSceneInteractables, ..TrackedInteractables]);
+        HighlightHandler.Disable([.. InteractablesToHighlight, .. TrackedSceneInteractables, .. TrackedInteractables]);
 
         TrackedSceneInteractables.Clear();
         InteractablesToHighlight.Clear();
@@ -28,6 +29,62 @@ public static class InteractableStateHandler
     public static void Init()
     {
         LoadHighlightableResources();
+    }
+
+    public static void PostInit()
+    {
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+        foreach (var assetBundle in AssetBundle.GetAllLoadedAssetBundles())
+        {
+            if (!AssetBundleRegistry.IsRegistered(assetBundle.name))
+                continue;
+
+            Log.LogDebug($"Processing AssetBundle: {assetBundle.name} ");
+
+            var assets = assetBundle.LoadAllAssets();
+
+            foreach (var asset in assets)
+            {
+                if (asset is GameObject go && InteractableRegistry.IsRegistered(go.name, out var category))
+                {
+                    if (!go.GetComponent<InteractableHighlightCategoryMarker>())
+                    {
+                        go.AddComponent<InteractableHighlightCategoryMarker>()
+                            .SetCategory(category);
+
+                        Log.LogDebug(
+                            $"Added category marker for registered modded interactable - {go.name} - Category: ({category})"
+                        );
+                    }
+                }
+                else if (asset is InteractableSpawnCard isc && InteractableRegistry.IsRegistered(isc.prefab.name, out var iscCategory))
+                {
+                    if (!isc.prefab.GetComponent<InteractableHighlightCategoryMarker>())
+                    {
+                        isc.prefab.AddComponent<InteractableHighlightCategoryMarker>()
+                            .SetCategory(iscCategory);
+
+                        Log.LogDebug(
+                            $"Added category marker for registered modded interactable - {isc.prefab.name} - Category: ({iscCategory})"
+                        );
+                    }
+                }
+                else if (asset is SpawnCard sc && InteractableRegistry.IsRegistered(sc.prefab.name, out var scCategory))
+                {
+                    if (!sc.prefab.GetComponent<InteractableHighlightCategoryMarker>())
+                    {
+                        sc.prefab.AddComponent<InteractableHighlightCategoryMarker>()
+                            .SetCategory(scCategory);
+
+                        Log.LogDebug(
+                            $"Added category marker for registered modded interactable - {sc.prefab.name} - Category: ({scCategory})"
+                        );
+                    }
+                }
+            }
+        }
+        stopwatch.Stop();
+        Log.LogDebug($"{nameof(PostInit)} processing AssetBundles took {stopwatch.ElapsedMilliseconds}ms");
     }
 
     private static void TrackInteractables()
