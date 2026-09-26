@@ -64,6 +64,7 @@ public static class HighlightHandler
         highlight.enabled = true;
         highlight.highlightColor = Highlight.HighlightColor.custom;
         highlight.CustomColor = Constants.GetColor(highlightConfigColor);
+        highlight.strength = Mathf.Clamp(ModConfig.Instance.HighlightStrength.Value, 0.5f, 1f);
     }
 
     public static Highlight[] Disable(GameObject[] gameObject)

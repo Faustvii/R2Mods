@@ -54,7 +54,7 @@ public class ModConfig
         HighlightNewtStatues,
         HighlightShrines;
 
-    public ConfigEntry<float> HideTime;
+    public ConfigEntry<float> HideTime, HighlightStrength;
     public ConfigEntry<ConfigHighlightColor> HighlightColor,
         HighlightChestColor,
         HighlightShopColor,
@@ -107,6 +107,13 @@ public class ModConfig
         DoNotHideAsDrifter = config.Bind("Highlight", "DoNotHideAsDrifter", false, "Do not hide used chests as Drifter");
         FadeInsteadOfHide = config.Bind("Hide", "Fade", false, "Fade instead of hiding");
         HideTime = config.Bind("Hide", "Time", 1f, "Time before stuff is hidden");
+        HighlightStrength = config.Bind(
+            "Highlight",
+            "Strength",
+            1f,
+            "Global highlight opacity/strength"
+        );
+        HighlightStrength.Value = Math.Clamp(HighlightStrength.Value, 0.5f, 1f);
 
         HighlightChests = config.Bind("Highlight", "Chest", true, "Highlight Chests");
         HighlightStealthedChests = config.Bind(
@@ -290,6 +297,7 @@ public class ModConfig
             );
 
             RiskOfOptionsCompat.AddSliderNumberOptions(restartRequired: false, 0.1f, 5f, HideTime);
+            RiskOfOptionsCompat.AddStepSliderPercentageOptions(false, 0.5f, 1f, 0.01f, HighlightStrength);
             RiskOfOptionsCompat.AddDropdownOptions(
                 false,
                 HighlightColor,
