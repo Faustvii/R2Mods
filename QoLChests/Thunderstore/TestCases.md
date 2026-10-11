@@ -33,6 +33,10 @@ Below are some tests cases that should be run to confirm updates work as expecte
 | Hide              | Stuff will hide                            |
 | Different colors  | Categories can have different colors       |
 | Used              | Highlights are removed if remove from used |
+| Range highlighting | Disabled by default; current global highlighting remains unchanged |
+| Range highlighting | Enabled interactables highlight inside the configured distance and disable outside it |
+| Range highlighting | Changing the range or toggle takes effect immediately |
+| Range highlighting | Used, hidden, or faded interactables are not incorrectly re-highlighted |
 
 ## General
 

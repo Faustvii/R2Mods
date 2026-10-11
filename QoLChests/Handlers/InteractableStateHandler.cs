@@ -92,6 +92,16 @@ public static class InteractableStateHandler
             .Select(x => x.gameObject);
 
         var trackedInteractables = sceneInteractables.Concat(TrackedInteractables).ToArray();
+        foreach (var interactable in trackedInteractables)
+        {
+            if (!interactable)
+                continue;
+
+            var proximityHighlight = interactable.GetComponent<Components.ProximityHighlight>();
+            if (proximityHighlight)
+                proximityHighlight.Configure(false);
+        }
+
         Log.LogDebug(
             $"Configuring highlights - {trackedInteractables.Length} tracked interactables"
         );
@@ -119,6 +129,14 @@ public static class InteractableStateHandler
         // Add highlights to tracked resources
         foreach (var interactable in InteractablesToHighlight)
         {
+            var proximityHighlight = interactable.GetComponent<Components.ProximityHighlight>();
+            if (!proximityHighlight)
+                proximityHighlight = interactable.AddComponent<Components.ProximityHighlight>();
+
+            proximityHighlight.Configure(ModConfig.Instance.HighlightOnlyInRange.Value);
+            if (ModConfig.Instance.HighlightOnlyInRange.Value)
+                continue;
+
             var hideWithDelay = interactable.GetComponent<HideWithDelay>();
             var fadeWithDelay = interactable.GetComponent<FadeWithDelay>();
             var hasBeenUsed = interactable.GetComponent<InteractableUsed>();

@@ -136,6 +136,32 @@ namespace Faust.Shared.Compatability
             }
         }
 
+        public static void AddStepSliderNumberOptions(
+            bool restartRequired,
+            float min,
+            float max,
+            float increment,
+            params ConfigEntry<float>[] configEntries
+        )
+        {
+            foreach (var config in configEntries)
+            {
+                ModSettingsManager.AddOption(
+                    new StepSliderOption(
+                        config,
+                        new StepSliderConfig
+                        {
+                            min = min,
+                            max = max,
+                            increment = increment,
+                            formatString = "{0:0}",
+                            restartRequired = restartRequired
+                        }
+                    )
+                );
+            }
+        }
+
         public static void AddSliderPercentageOptions(
             bool restartRequired = false,
                 params ConfigEntry<float>[] configEntries
