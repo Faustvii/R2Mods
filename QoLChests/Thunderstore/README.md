@@ -8,6 +8,12 @@ For feature suggestions or bug reports go [here](https://github.com/Faustvii/R2M
 
 ## Changelog
 
+### 1.3.7
+
+- Added range highlighting (Highlights only when within a certain range)
+- Disguised mimics are highlighted exactly the same as a normal chest.
+- Added option to disable highlights while you carry Hex of Blindness.
+
 ### 1.3.6
 
 - Added missing highlights for Quality(Goorakh)

@@ -39,6 +39,7 @@ public class ModConfig
         DoNotHideAsDrifter;
 
     public ConfigEntry<bool> HighlightOnlyInRange;
+    public ConfigEntry<bool> DisableHighlightsDuringBlindness;
     public ConfigEntry<float> HighlightDistance;
 
     public ConfigEntry<bool> HighlightChests,
@@ -55,7 +56,8 @@ public class ModConfig
         HighlightVoidCradle,
         HighlightPressurePlates,
         HighlightNewtStatues,
-        HighlightShrines;
+        HighlightShrines,
+        HighlightMimics;
 
     public ConfigEntry<float> HideTime, HighlightStrength;
     public ConfigEntry<ConfigHighlightColor> HighlightColor,
@@ -123,6 +125,12 @@ public class ModConfig
             false,
             "Only highlight interactables when a local player is nearby"
         );
+        DisableHighlightsDuringBlindness = config.Bind(
+            "Highlight",
+            "Disable During Blindness",
+            false,
+            "Disable highlights while the local player carries Hex of Blindness. Restore highlights after cleansing."
+        );
         HighlightDistance = config.Bind(
             "Highlight",
             "Distance",
@@ -166,6 +174,12 @@ public class ModConfig
         HighlightNewtStatues = config.Bind("Highlight", "Newt Statues", true, "Highlight Newt Statues");
         HighlightPressurePlates = config.Bind("Highlight", "Pressure Plates", true, "Highlight Pressure Plates");
         HighlightShrines = config.Bind("Highlight", "Shrines", false, "Highlight Shrines");
+        HighlightMimics = config.Bind(
+            "Highlight",
+            "Mimics",
+            true,
+            "Highlight disguised mimics like chests"
+        );
 
         HighlightColor = config.Bind(
             "Highlight",
@@ -291,7 +305,8 @@ public class ModConfig
                 FadeInsteadOfHide,
                 RemoveHighlightFromUsed,
                 DoNotHideAsDrifter,
-                HighlightOnlyInRange
+                HighlightOnlyInRange,
+                DisableHighlightsDuringBlindness
             );
 
             RiskOfOptionsCompat.AddCheckboxOptions(
@@ -310,7 +325,8 @@ public class ModConfig
                 HighlightVoidCradle,
                 HighlightNewtStatues,
                 HighlightPressurePlates,
-                HighlightShrines
+                HighlightShrines,
+                HighlightMimics
             );
 
             RiskOfOptionsCompat.AddSliderNumberOptions(restartRequired: false, 0.1f, 5f, HideTime);
@@ -365,6 +381,7 @@ public class ModConfig
             InteractableCategory.NewtStatue => HighlightNewtStatueColor,
             InteractableCategory.PressurePlate => HighlightPressurePlateColor,
             InteractableCategory.Shrine => HighlightShrineColor,
+            InteractableCategory.Mimic => HighlightChestColor,
             _ => HighlightColor
         };
     }
@@ -388,6 +405,7 @@ public class ModConfig
             InteractableCategory.NewtStatue => HighlightNewtStatues.Value,
             InteractableCategory.PressurePlate => HighlightPressurePlates.Value,
             InteractableCategory.Shrine => HighlightShrines.Value,
+            InteractableCategory.Mimic => HighlightMimics.Value,
             _ => false
         };
     }

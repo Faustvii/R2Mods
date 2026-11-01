@@ -20,5 +20,6 @@ public enum InteractableCategory
     PressurePlate = 11,
     EquipmentBarrel = 12,
     LunarPod = 13,
-    VoidCradle = 14
+    VoidCradle = 14,
+    Mimic = 15
 }
