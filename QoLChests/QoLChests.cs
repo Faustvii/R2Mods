@@ -28,6 +28,7 @@ namespace Faust.QoLChests
 
             GeneralHooks.Register(Config);
             ChestHooks.Register();
+            MimicHooks.Register();
             ShopHooks.Register();
             SceneHooks.Register();
             InteractableSpawnHooks.Register();
