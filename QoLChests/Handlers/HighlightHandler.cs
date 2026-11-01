@@ -46,6 +46,12 @@ public static class HighlightHandler
             );
             return;
         }
+        if (!ModConfig.Instance.IsCategoryHighlightEnabled(highlightCategory.Category)
+            || !HighlightVisibility.Allows(interactable.transform.position))
+        {
+            Disable(interactable);
+            return;
+        }
         var highlightConfigColor = ModConfig
             .Instance.GetCategoryHighlightColorConfig(highlightCategory.Category)
             .Value;

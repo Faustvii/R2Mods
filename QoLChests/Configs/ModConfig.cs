@@ -39,6 +39,7 @@ public class ModConfig
         DoNotHideAsDrifter;
 
     public ConfigEntry<bool> HighlightOnlyInRange;
+    public ConfigEntry<bool> DisableHighlightsDuringBlindness;
     public ConfigEntry<float> HighlightDistance;
 
     public ConfigEntry<bool> HighlightChests,
@@ -122,6 +123,12 @@ public class ModConfig
             "Only In Range",
             false,
             "Only highlight interactables when a local player is nearby"
+        );
+        DisableHighlightsDuringBlindness = config.Bind(
+            "Highlight",
+            "Disable During Blindness",
+            false,
+            "Disable highlights while the local player carries Hex of Blindness. Restore highlights after cleansing."
         );
         HighlightDistance = config.Bind(
             "Highlight",
@@ -291,7 +298,8 @@ public class ModConfig
                 FadeInsteadOfHide,
                 RemoveHighlightFromUsed,
                 DoNotHideAsDrifter,
-                HighlightOnlyInRange
+                HighlightOnlyInRange,
+                DisableHighlightsDuringBlindness
             );
 
             RiskOfOptionsCompat.AddCheckboxOptions(

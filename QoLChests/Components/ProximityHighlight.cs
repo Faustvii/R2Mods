@@ -1,24 +1,23 @@
-using Faust.QoLChests.Configs;
 using Faust.QoLChests.Handlers;
-using RoR2;
 using UnityEngine;
 
 namespace Faust.QoLChests.Components;
 
 /// <summary>
-/// Applies range-based highlighting to a live interactable without scanning the scene.
+/// Applies player visibility limits to a live interactable without scanning the scene.
 /// </summary>
 public class ProximityHighlight : MonoBehaviour
 {
     private const float UpdateInterval = 0.1f;
     private float nextCheckTime;
-    private bool isInRange;
-    private bool hasCheckedRange;
+    private bool isVisible;
+    private bool hasCheckedVisibility;
 
-    public void Configure(bool rangeMode)
+    public void Configure(bool requiresUpdates)
     {
-        this.enabled = rangeMode;
-        hasCheckedRange = false;
+        enabled = requiresUpdates;
+        hasCheckedVisibility = false;
+        nextCheckTime = 0f;
     }
 
     private void Update()
@@ -27,29 +26,14 @@ public class ProximityHighlight : MonoBehaviour
             return;
 
         nextCheckTime = Time.unscaledTime + UpdateInterval;
-        var distance = ModConfig.Instance.HighlightDistance.Value;
-        var distanceSquared = distance * distance;
-        var closestPlayerDistanceSquared = float.MaxValue;
-
-        foreach (var localUser in LocalUserManager.readOnlyLocalUsersList)
-        {
-            var body = localUser?.cachedBody;
-            if (!body || !body.isPlayerControlled)
-                continue;
-
-            var playerDistanceSquared = (body.corePosition - transform.position).sqrMagnitude;
-            if (playerDistanceSquared < closestPlayerDistanceSquared)
-                closestPlayerDistanceSquared = playerDistanceSquared;
-        }
-
-        var nowInRange = closestPlayerDistanceSquared <= distanceSquared;
-        if (hasCheckedRange && nowInRange == isInRange)
+        var nowVisible = HighlightVisibility.Allows(transform.position);
+        if (hasCheckedVisibility && nowVisible == isVisible)
             return;
 
-        hasCheckedRange = true;
-        isInRange = nowInRange;
+        hasCheckedVisibility = true;
+        isVisible = nowVisible;
 
-        if (!nowInRange)
+        if (!nowVisible)
         {
             HighlightHandler.Disable(gameObject);
             return;
