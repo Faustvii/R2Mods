@@ -46,6 +46,12 @@ public static class HighlightHandler
             );
             return;
         }
+        if (!ModConfig.Instance.IsCategoryHighlightEnabled(highlightCategory.Category)
+            || !HighlightVisibility.Allows(interactable.transform.position))
+        {
+            Disable(interactable);
+            return;
+        }
         var highlightConfigColor = ModConfig
             .Instance.GetCategoryHighlightColorConfig(highlightCategory.Category)
             .Value;
@@ -64,6 +70,7 @@ public static class HighlightHandler
         highlight.enabled = true;
         highlight.highlightColor = Highlight.HighlightColor.custom;
         highlight.CustomColor = Constants.GetColor(highlightConfigColor);
+        highlight.strength = Mathf.Clamp(ModConfig.Instance.HighlightStrength.Value, 0.5f, 1f);
     }
 
     public static Highlight[] Disable(GameObject[] gameObject)

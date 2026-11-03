@@ -79,54 +79,47 @@ public static class InteractableStateHandler
 
     private static void TrackInteractables()
     {
-        if (InteractablesToHighlight.Count > 0)
-        {
-            Log.LogWarning(
-                $"InteractablesToHighlight is not empty - Call Reset() before calling TrackInteractables()"
-            );
-            return;
-        }
-
         var sceneInteractables = Object
             .FindObjectsOfType<InteractableHighlightCategoryMarker>()
             .Select(x => x.gameObject);
 
-        var trackedInteractables = sceneInteractables.Concat(TrackedInteractables).ToArray();
-        Log.LogDebug(
-            $"Configuring highlights - {trackedInteractables.Length} tracked interactables"
-        );
-        foreach (var interactable in trackedInteractables)
-        {
-            if (!interactable)
-                continue;
-            var highlightCategoryMarker =
-                interactable.GetComponent<InteractableHighlightCategoryMarker>();
-            if (!highlightCategoryMarker)
-            {
-                Log.LogWarning(
-                    $"Interactable {interactable.name} does not have a HighlightCategoryMarker - why are we tracking it?"
-                );
-                continue;
-            }
-            if (ModConfig.Instance.IsCategoryHighlightEnabled(highlightCategoryMarker.Category))
-                InteractablesToHighlight.Add(interactable);
-        }
+        foreach (var interactable in sceneInteractables.Concat(TrackedInteractables).Distinct())
+            TrackInteractable(interactable);
 
-        Log.LogDebug(
-            $"Configuring highlights - {trackedInteractables.Length} tracked interactables out of which {InteractablesToHighlight.Count} will be highlighted"
-        );
+        Log.LogDebug($"Configured {InteractablesToHighlight.Count} interactable highlights");
+    }
 
-        // Add highlights to tracked resources
-        foreach (var interactable in InteractablesToHighlight)
-        {
-            var hideWithDelay = interactable.GetComponent<HideWithDelay>();
-            var fadeWithDelay = interactable.GetComponent<FadeWithDelay>();
-            var hasBeenUsed = interactable.GetComponent<InteractableUsed>();
-            if (fadeWithDelay || hideWithDelay || hasBeenUsed)
-                continue;
+    // Also used for objects spawned after SceneDirector.Start, such as mimics.
+    public static void TrackInteractable(GameObject interactable)
+    {
+        if (!interactable)
+            return;
 
-            HighlightHandler.Enable(interactable);
-        }
+        HighlightHandler.Disable(interactable);
+        var proximityHighlight = interactable.GetComponent<Components.ProximityHighlight>();
+        if (proximityHighlight)
+            proximityHighlight.Configure(false);
+
+        var marker = interactable.GetComponent<InteractableHighlightCategoryMarker>();
+        if (!marker || !ModConfig.Instance.IsCategoryHighlightEnabled(marker.Category))
+            return;
+
+        if (!InteractablesToHighlight.Contains(interactable))
+            InteractablesToHighlight.Add(interactable);
+
+        if (!proximityHighlight)
+            proximityHighlight = interactable.AddComponent<Components.ProximityHighlight>();
+
+        proximityHighlight.Configure(HighlightVisibility.RequiresUpdates);
+        if (HighlightVisibility.RequiresUpdates)
+            return;
+
+        if (interactable.GetComponent<HideWithDelay>()
+            || interactable.GetComponent<FadeWithDelay>()
+            || interactable.GetComponent<InteractableUsed>())
+            return;
+
+        HighlightHandler.Enable(interactable);
     }
 
     private static void LoadHighlightableResources()

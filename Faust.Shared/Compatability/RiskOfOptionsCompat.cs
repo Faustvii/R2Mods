@@ -106,14 +106,66 @@ namespace Faust.Shared.Compatability
             {
                 ModSettingsManager.AddOption(
                     new ChoiceOption(config, new ChoiceConfig { restartRequired = restartRequired })
+            );
+            }
+        }
+
+        public static void AddStepSliderPercentageOptions(
+            bool restartRequired,
+            float min,
+            float max,
+            float increment,
+            params ConfigEntry<float>[] configEntries
+        )
+        {
+            foreach (var config in configEntries)
+            {
+                ModSettingsManager.AddOption(
+                    new StepSliderOption(
+                        config,
+                        new StepSliderConfig
+                        {
+                            min = min,
+                            max = max,
+                            increment = increment,
+                            formatString = "{0:P0}",
+                            restartRequired = restartRequired
+                        }
+                    )
+                );
+            }
+        }
+
+        public static void AddStepSliderNumberOptions(
+            bool restartRequired,
+            float min,
+            float max,
+            float increment,
+            params ConfigEntry<float>[] configEntries
+        )
+        {
+            foreach (var config in configEntries)
+            {
+                ModSettingsManager.AddOption(
+                    new StepSliderOption(
+                        config,
+                        new StepSliderConfig
+                        {
+                            min = min,
+                            max = max,
+                            increment = increment,
+                            formatString = "{0:0}",
+                            restartRequired = restartRequired
+                        }
+                    )
                 );
             }
         }
 
         public static void AddSliderPercentageOptions(
             bool restartRequired = false,
-            params ConfigEntry<float>[] configEntries
-        )
+                params ConfigEntry<float>[] configEntries
+            )
         {
             foreach (var config in configEntries)
             {

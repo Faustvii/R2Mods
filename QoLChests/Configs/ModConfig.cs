@@ -38,6 +38,10 @@ public class ModConfig
         FadeInsteadOfHide,
         DoNotHideAsDrifter;
 
+    public ConfigEntry<bool> HighlightOnlyInRange;
+    public ConfigEntry<bool> DisableHighlightsDuringBlindness;
+    public ConfigEntry<float> HighlightDistance;
+
     public ConfigEntry<bool> HighlightChests,
         HighlightShops,
         HighlightScrapper,
@@ -54,7 +58,7 @@ public class ModConfig
         HighlightNewtStatues,
         HighlightShrines;
 
-    public ConfigEntry<float> HideTime;
+    public ConfigEntry<float> HideTime, HighlightStrength;
     public ConfigEntry<ConfigHighlightColor> HighlightColor,
         HighlightChestColor,
         HighlightShopColor,
@@ -107,6 +111,32 @@ public class ModConfig
         DoNotHideAsDrifter = config.Bind("Highlight", "DoNotHideAsDrifter", false, "Do not hide used chests as Drifter");
         FadeInsteadOfHide = config.Bind("Hide", "Fade", false, "Fade instead of hiding");
         HideTime = config.Bind("Hide", "Time", 1f, "Time before stuff is hidden");
+        HighlightStrength = config.Bind(
+            "Highlight",
+            "Strength",
+            1f,
+            "Global highlight opacity/strength"
+        );
+        HighlightStrength.Value = Math.Clamp(HighlightStrength.Value, 0.5f, 1f);
+        HighlightOnlyInRange = config.Bind(
+            "Highlight",
+            "Only In Range",
+            false,
+            "Only highlight interactables when a local player is nearby"
+        );
+        DisableHighlightsDuringBlindness = config.Bind(
+            "Highlight",
+            "Disable During Blindness",
+            false,
+            "Disable highlights while the local player carries Hex of Blindness. Restore highlights after cleansing."
+        );
+        HighlightDistance = config.Bind(
+            "Highlight",
+            "Distance",
+            50f,
+            "Maximum distance for interactable highlights"
+        );
+        HighlightDistance.Value = Math.Clamp(HighlightDistance.Value, 10f, 200f);
 
         HighlightChests = config.Bind("Highlight", "Chest", true, "Highlight Chests");
         HighlightStealthedChests = config.Bind(
@@ -267,7 +297,9 @@ public class ModConfig
                 HideUsedVoidCradles,
                 FadeInsteadOfHide,
                 RemoveHighlightFromUsed,
-                DoNotHideAsDrifter
+                DoNotHideAsDrifter,
+                HighlightOnlyInRange,
+                DisableHighlightsDuringBlindness
             );
 
             RiskOfOptionsCompat.AddCheckboxOptions(
@@ -290,6 +322,14 @@ public class ModConfig
             );
 
             RiskOfOptionsCompat.AddSliderNumberOptions(restartRequired: false, 0.1f, 5f, HideTime);
+            RiskOfOptionsCompat.AddStepSliderNumberOptions(
+                restartRequired: false,
+                10f,
+                200f,
+                1f,
+                HighlightDistance
+            );
+            RiskOfOptionsCompat.AddStepSliderPercentageOptions(false, 0.5f, 1f, 0.01f, HighlightStrength);
             RiskOfOptionsCompat.AddDropdownOptions(
                 false,
                 HighlightColor,
